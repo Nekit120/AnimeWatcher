@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AnimeWatcher</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_settings">Настройки</string>
+
+    <!--  Fragments  -->
+    <string name="title_favorite">Любимые</string>
+    <string name="title_watch">Просмотр</string>
+    <string name="title_release_date">Даты выхода</string>
+
+</resources>
