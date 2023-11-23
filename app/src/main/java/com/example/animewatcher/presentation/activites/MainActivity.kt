@@ -1,4 +1,4 @@
-package com.example.animewatcher.presentation
+package com.example.animewatcher.presentation.activites
 
 import android.content.res.Configuration
 import android.os.Bundle

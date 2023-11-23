@@ -1,13 +1,13 @@
-package com.example.animewatcher.presentation
+package com.example.animewatcher.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.animewatcher.R
 
-class SerchFragment : Fragment() {
+class WatchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +18,7 @@ class SerchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_serch, container, false)
+        return inflater.inflate(R.layout.fragment_watch, container, false)
     }
 
 }

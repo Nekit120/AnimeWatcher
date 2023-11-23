@@ -1,11 +1,14 @@
 <resources>
-    <string name="app_name">AnimeWatcher</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_search">Search</string>
-    <string name="title_settings">Settings</string>
     <!--  Fragments  -->
     <string name="title_favorite">Favorite</string>
     <string name="title_watch">Watch</string>
     <string name="title_release_date">Release date</string>
+
+    <!--  Other  -->
+    <string name="app_name">AnimeWatcher</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_search">Search</string>
+    <string name="title_settings">Settings</string>
+    <string name="anime_error_request">A data access error has occurred, you may need to check your Internet connection!</string>
 
 </resources>
