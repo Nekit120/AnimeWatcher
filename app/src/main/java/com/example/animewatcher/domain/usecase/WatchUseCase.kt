@@ -1,4 +1,12 @@
 package com.example.animewatcher.domain.usecase
 
-class WatchUseCase {
+import com.example.animewatcher.domain.model.AnimeItemApiModel.AnimeApiItemModel
+import com.example.animewatcher.domain.repository.WatchRepository
+
+class WatchUseCase(val watchRepository: WatchRepository ) {
+
+    suspend fun getLastUpdatesAnimeList(): List<AnimeApiItemModel> {
+        return watchRepository.getLastUpdateAnime()
+    }
+
 }
