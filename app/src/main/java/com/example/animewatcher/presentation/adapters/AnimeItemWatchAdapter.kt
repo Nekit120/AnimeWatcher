@@ -1,26 +1,32 @@
 package com.example.animewatcher.presentation.adapters
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.AnimeWatchItemBinding
-import com.example.animewatcher.domain.model.AnimeItemModel
+import com.example.animewatcher.domain.model.AnimeItemApiModel.AnimeApiItemModel
 
-class AnimeItemWatchAdapter(private var animeItemList: List<AnimeItemModel> = emptyList()): RecyclerView.Adapter<AnimeItemWatchAdapter.ItemHolder>() {
+class AnimeItemWatchAdapter(private val context: Context,private var animeItemList: List<AnimeApiItemModel> = emptyList()): RecyclerView.Adapter<AnimeItemWatchAdapter.ItemHolder>() {
 
 
 
     class ItemHolder(view: View): RecyclerView.ViewHolder(view){
         private val binding = AnimeWatchItemBinding.bind(view)
+        val baseUrlImg = "https://anilibria.tv"
+        fun setData(animeItem: AnimeApiItemModel,context: Context) = with(binding){
+            val fullUrlImg = baseUrlImg + animeItem.posters.original.url
+            animeName.text = animeItem.names.ru
+            itemView.setOnClickListener{
 
-        fun setData(animeItem: AnimeItemModel) = with(binding){
-            animeName.text = animeItem.name
-            animePosterImageView.setImageResource(R.drawable.anime_poster)
+            }
+            Glide.with(context).load(fullUrlImg).into(animePosterImageView)
         }
         companion object{
                 fun createItemHolder(parent: ViewGroup): ItemHolder {
@@ -37,10 +43,10 @@ class AnimeItemWatchAdapter(private var animeItemList: List<AnimeItemModel> = em
     override fun getItemCount() = animeItemList.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-      holder.setData(animeItemList[position])
+      holder.setData(animeItemList[position],context)
     }
 
-    fun setData(data: List<AnimeItemModel>) {
+    fun setData(data: List<AnimeApiItemModel>) {
         animeItemList = data
         notifyDataSetChanged()
     }

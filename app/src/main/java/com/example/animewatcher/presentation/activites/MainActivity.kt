@@ -18,7 +18,9 @@ import com.example.animewatcher.R
 import com.example.animewatcher.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigationrail.NavigationRailView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy{
         ActivityMainBinding.inflate(layoutInflater)
