@@ -1,6 +1,6 @@
 package com.example.animewatcher.domain.repository
 
-import com.example.animewatcher.domain.model.AnimeItemApiModel.AnimeApiItemModel
+import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
 
 interface WatchRepository {
 
