@@ -5,20 +5,15 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.animewatcher.databinding.FragmentWatchBinding
-import com.example.animewatcher.domain.model.AnimeItemModel
 import com.example.animewatcher.presentation.adapters.AnimeItemWatchAdapter
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @AndroidEntryPoint
 class WatchFragment : Fragment() {
