@@ -1,9 +1,6 @@
 package com.example.animewatcher.presentation.di
 
-import com.example.animewatcher.data.API.AnimeAPI
-import com.example.animewatcher.data.API.GetApiKeyClass
 import com.example.animewatcher.data.repository.WatchRepositoryImpl
-import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
 import com.example.animewatcher.domain.repository.WatchRepository
 import dagger.Module
 import dagger.Provides
@@ -27,14 +24,10 @@ val okHttpClient = OkHttpClient.Builder()
 class DataModule {
     @Provides
     @Singleton
-    fun provideWatchRepository(retrofit: Retrofit,getApiKeyClass: GetApiKeyClass): WatchRepository {
-        return WatchRepositoryImpl(retrofit,getApiKeyClass)
+    fun provideWatchRepository(retrofit: Retrofit): WatchRepository {
+        return WatchRepositoryImpl(retrofit)
     }
-    @Provides
-    @Singleton
-    fun provideGetApiKeyClass(): GetApiKeyClass {
-        return GetApiKeyClass()
-    }
+
 
     @Provides
     @Singleton
