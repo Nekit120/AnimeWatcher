@@ -4,7 +4,11 @@ plugins {
     id "kotlin-kapt"
     id "com.google.dagger.hilt.android"
 }
-
+def properties = new Properties()
+def file  = project.rootProject.file("local.properties")
+if(file.exists()) {
+    properties.load(file.newReader())
+}
 android {
     namespace 'com.example.animewatcher'
     compileSdk 34
@@ -22,7 +26,13 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //properties.getProperty("token")
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                buildConfigField "String", "API_KEY", "\"${properties.getProperty("token")}\""
+
+        }
+        debug {
+            buildConfigField "String", "API_KEY", "\"${properties.getProperty("token")}\""
         }
     }
     compileOptions {
@@ -35,7 +45,10 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig true
     }
+
+
 
     kapt {
         correctErrorTypes = true
