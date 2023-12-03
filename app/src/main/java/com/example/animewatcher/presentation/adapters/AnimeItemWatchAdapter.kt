@@ -4,21 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.AnimeWatchItemBinding
 import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
 
-class AnimeItemWatchAdapter(private val context: Context,private var animeItemList: List<AnimeApiItemModel> = emptyList()): RecyclerView.Adapter<AnimeItemWatchAdapter.ItemHolder>() {
-
-
+class AnimeItemWatchAdapter(private val context: Context,private val navController: NavController,private var animeItemList: List<AnimeApiItemModel> = emptyList()): RecyclerView.Adapter<AnimeItemWatchAdapter.ItemHolder>() {
 
     class ItemHolder(view: View): RecyclerView.ViewHolder(view){
         private val binding = AnimeWatchItemBinding.bind(view)
-        fun setData(animeItem: AnimeApiItemModel, context: Context) = with(binding){
+        fun setData(animeItem: AnimeApiItemModel, context: Context,navController: NavController) = with(binding){
             animeName.text = animeItem.materialData.title
             itemView.setOnClickListener {
+                navController.navigate(R.id.action_navigation_watch_to_animeFragment)
             }
             Glide.with(context).load(animeItem.materialData.posterUrl)
                 .into(animePosterImageView)
@@ -39,7 +39,7 @@ class AnimeItemWatchAdapter(private val context: Context,private var animeItemLi
     override fun getItemCount() = animeItemList.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(animeItemList[position],context)
+        holder.setData(animeItemList[position],context,navController)
     }
 
     fun setData(data: List<AnimeApiItemModel>) {

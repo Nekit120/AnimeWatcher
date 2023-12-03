@@ -10,7 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.animewatcher.R
 import com.example.animewatcher.databinding.FragmentWatchBinding
 import com.example.animewatcher.presentation.adapters.AnimeItemWatchAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +38,9 @@ class WatchFragment : Fragment() {
         } else {
             binding.recyclerView.layoutManager = GridLayoutManager(activity as Context, 2)
         }
-        animeWatchAdapter = AnimeItemWatchAdapter(requireActivity())
+
+        val navController = findNavController()
+        animeWatchAdapter = AnimeItemWatchAdapter(requireActivity(),navController)
         binding.recyclerView.adapter = animeWatchAdapter
 
 
