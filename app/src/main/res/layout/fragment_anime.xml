@@ -199,7 +199,7 @@
 
                 <!-- Play button -->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/playCard"
+                    android:id="@+id/play_card"
                     style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -237,7 +237,7 @@
 
             <!-- Synopsis -->
             <TextView
-                android:id="@+id/anime_details_txt"
+                android:id="@+id/animeDetailsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="18dp"
