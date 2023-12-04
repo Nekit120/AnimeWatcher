@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_favorite" >
         <action
             android:id="@+id/action_navigation_favorite_to_animeFragment"
-            app:destination="@id/animeFragment" />
+            app:destination="@id/navigation_anime_info" />
     </fragment>
     <fragment
         android:id="@+id/navigation_watch"
@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_watch" >
         <action
             android:id="@+id/action_navigation_watch_to_animeFragment"
-            app:destination="@id/animeFragment" />
+            app:destination="@id/navigation_anime_info" />
     </fragment>
     <fragment
         android:id="@+id/navigation_release_date"
@@ -39,7 +39,7 @@
         android:label="@string/title_search"
         tools:layout="@layout/fragment_serch" />
     <fragment
-        android:id="@+id/animeFragment"
+        android:id="@+id/navigation_anime_info"
         android:name="com.example.animewatcher.presentation.fragments.info.AnimeFragment"
         android:label="AnimeFragment" />
 </navigation>

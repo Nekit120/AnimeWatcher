@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -43,10 +42,6 @@ class MainActivity : AppCompatActivity() {
         //Проверяет ориентацию устройства
         val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-        //Visibility bottomNav or RailNav
-        bottomNavView.isVisible = !isLandscape
-        RailNavView.isVisible = isLandscape
-
         //ToolBar
         setSupportActionBar(binding.toolbar)
         binding.toolbar.isVisible = !isLandscape
@@ -59,6 +54,27 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        //Visibility bottomNav or RailNav
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_anime_info -> {
+                    bottomNavView.isVisible = false
+                    RailNavView.isVisible = false
+                }
+                R.id.navigation_search, R.id.navigation_settings -> {
+                    bottomNavView.isVisible = false
+                    RailNavView.isVisible = isLandscape
+                }
+                else -> {
+                    bottomNavView.isVisible = !isLandscape
+                    RailNavView.isVisible = isLandscape
+                }
+
+            }
+
+        }
+
 
     }
     //Проверка на подключение к интернету 
