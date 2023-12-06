@@ -13,5 +13,6 @@
     <string name="anime_error_request">Произошла ошибка доступа к данным, возможно Вам стоит проверить подключение к интернету!</string>
     <string name="select_episode">Выберите эпизод</string>
     <string name="play_text">Воспроизвести</string>
+    <string name="description_error">К сожалению описание ещё не добавленно, но Вы всегда можете связаться с нами и сообщить об этом!</string>
 
 </resources>

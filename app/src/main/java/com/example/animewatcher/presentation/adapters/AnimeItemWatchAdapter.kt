@@ -19,15 +19,16 @@ class AnimeItemWatchAdapter(private val context: Context,private val navControll
     class ItemHolder(view: View): RecyclerView.ViewHolder(view){
         private val binding = AnimeWatchItemBinding.bind(view)
         fun setData(animeItem: AnimeApiItemModel, context: Context,navController: NavController) = with(binding){
-             val item = animeItem
              itemView.setOnClickListener {
                  navController.navigate(
                      R.id.action_navigation_watch_to_animeFragment,
-                     bundleOf(AnimeFragment.animeKey to item)
+                     bundleOf(AnimeFragment.animeKey to animeItem)
                  )
              }
+            if (animeItem.materialData!=null){
                 Glide.with(context).load(animeItem.materialData!!.posterUrl).into(animePosterImageView)
                 animeName.text = animeItem.materialData.title
+            }
 
 
 
@@ -44,20 +45,10 @@ class AnimeItemWatchAdapter(private val context: Context,private val navControll
         return ItemHolder.createItemHolder(parent)
     }
 
-    override fun getItemCount(): Int {
-        var countGoodRequest = 0
-        for (animeItem in animeItemList){
-            if (animeItem.materialData!=null){
-                countGoodRequest++
-            }
-        }
-      return  countGoodRequest
-    }
+    override fun getItemCount() = animeItemList.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        if (animeItemList[position].materialData!=null){
             holder.setData(animeItemList[position],context,navController)
-        }
     }
 
     fun setData(data: List<AnimeApiItemModel>) {

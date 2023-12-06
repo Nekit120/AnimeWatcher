@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.FragmentWatchBinding
+import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
 import com.example.animewatcher.presentation.adapters.AnimeItemWatchAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,8 +49,17 @@ class WatchFragment : Fragment() {
 
 
         viewModel.resultListMenuLive.observe(requireActivity(),{
-            animeWatchAdapter.setData(it)
+            val animeList = mutableListOf<AnimeApiItemModel>()
+            for (animeItem in it){
+                if (animeItem.materialData!=null){
+                    animeList.add(animeItem)
+                }
+            }
+            animeWatchAdapter.setData(animeList)
             binding.swipeContainer.isRefreshing = false
+            if(hasInternetConnection(requireActivity())){
+                binding.progressBarInAnimeWatch.visibility = View.GONE }
+            else { binding.progressBarInAnimeWatch.visibility = View.VISIBLE}
         })
 
         binding.swipeContainer.setOnRefreshListener { loadData() }
@@ -61,7 +71,6 @@ class WatchFragment : Fragment() {
         //Проверка на подключение к интернету
         if (hasInternetConnection(requireActivity())){
             viewModel.getLastUpdatesAnimeList()
-            binding.progressBarInAnimeWatch.visibility = View.GONE
             binding.errorCard.visibility = View.GONE
         } else {
             viewModel.resetToZeroAnimeList()
