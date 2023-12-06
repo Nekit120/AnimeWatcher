@@ -12,5 +12,6 @@
     <string name="anime_error_request">A data access error has occurred, you may need to check your Internet connection!</string>
     <string name="select_episode">Select episode</string>
     <string name="play_text">Play</string>
+    <string name="description_error">Unfortunately, the description has not been added yet, but you can always contact us and let us know about it!</string>
 
 </resources>

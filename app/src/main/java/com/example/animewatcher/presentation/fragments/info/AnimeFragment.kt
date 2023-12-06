@@ -41,18 +41,21 @@ class AnimeFragment : Fragment() {
             binding.favoriteCard.visibility = View.GONE
             binding.episodeCard.visibility = View.GONE
         }else{
-            binding.progressbarInPage.visibility = View.GONE
+            arguments.let {
+                val animeItem :AnimeApiItemModel? = arguments?.getParcelable(animeKey)
+                with(binding){
+                    animeNameText.text = animeItem!!.materialData!!.title
+                    Glide.with(requireActivity()).load(animeItem.materialData!!.posterUrl).into(backgroundImage)
+                    Glide.with(requireActivity()).load(animeItem.materialData.posterUrl).into(posterAnime)
+                    statusText.text = animeItem.materialData.animeStatus
+                    if(animeItem.materialData.description != null){
+                        animeDetailsText.text = animeItem.materialData.description
+                    } else {  animeDetailsText.text = getString(R.string.description_error) }
+                    binding.progressbarInPage.visibility = View.GONE
+                }
+            }
         }
-        arguments.let {
-            val animeItem :AnimeApiItemModel? = arguments?.getParcelable(animeKey)
-            with(binding){
-                animeNameText.text = animeItem!!.materialData!!.title
-                Glide.with(requireActivity()).load(animeItem.materialData!!.posterUrl).into(backgroundImage)
-                Glide.with(requireActivity()).load(animeItem.materialData.posterUrl).into(posterAnime)
-                statusText.text = animeItem.materialData.animeStatus
-                animeDetailsText.text = animeItem.materialData.description
-            }
-            }
+
 
 
 

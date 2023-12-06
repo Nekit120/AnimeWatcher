@@ -8,36 +8,27 @@ import kotlinx.android.parcel.Parcelize
 data class MaterialData (
     val title: String,
     @SerializedName("anime_title")
-    val animeTitle: String,
-    @SerializedName("title_en")
-    val titleEn: String,
+    val titleEn: String?,
     @SerializedName("anime_kind")
-    val animeKind: String,
+    val animeKind: String?,
     @SerializedName("all_status")
-    val allStatus: String,
+    val allStatus: String?,
     @SerializedName("anime_status")
-    val animeStatus: String,
+    val animeStatus: String?,
     val description: String?,
     @SerializedName("poster_url")
-    val posterUrl: String,
-    val screenshots: List<String>,
-    val duration: Int,
+    val posterUrl: String?,
+    val duration: Int?,
     @SerializedName("all_genres")
-    val allGenres: List<String>,
+    val allGenres: List<String>?,
     @SerializedName("anime_genres")
-    val animeGenres: List<String>,
-    @SerializedName("anime_studios")
-    val animeStudios: List<String>,
+    val animeGenres: List<String>?,
     @SerializedName("shikimori_rating")
-    val shikimoriRating: Double,
-    @SerializedName("shikimori_votes")
-    val shikimoriVotes: Int,
+    val shikimoriRating: Double?,
     @SerializedName("aired_at")
-    val airedAt: String,
-    @SerializedName("rating_mpaa")
-    val ratingMpaa: String,
+    val airedAt: String?,
     @SerializedName("episodes_total")
-    val episodesTotal: Int,
+    val episodesTotal: Int?,
     @SerializedName("episodes_aired")
-    val episodesAired: Int
+    val episodesAired: Int?
 ): Parcelable{}
