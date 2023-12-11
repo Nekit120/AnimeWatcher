@@ -240,7 +240,9 @@
                 android:id="@+id/animeDetailsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="18dp"
+                android:paddingStart="18dp"
+                android:paddingTop="6dp"
+                android:paddingEnd="18dp"
                 android:textStyle="italic" />
 
         </LinearLayout>
