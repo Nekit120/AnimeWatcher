@@ -62,8 +62,8 @@ class AnimeFragment : Fragment() {
         return binding.root
     }
 
-    companion object{
-        const val animeKey ="ANIME_KEY"
-    }
+        companion object{
+            const val animeKey ="ANIME_KEY"
+        }
 
 }

@@ -50,7 +50,7 @@
                 android:ellipsize="end"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:maxLines="2"
-                android:padding="6dp"
+                android:paddingStart="6dp"
                 android:textAlignment="center" />
 
         </LinearLayout>
