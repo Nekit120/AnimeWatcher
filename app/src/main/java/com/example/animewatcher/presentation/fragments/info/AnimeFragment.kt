@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.bumptech.glide.Glide
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.FragmentAnimeBinding
@@ -55,7 +57,7 @@ class AnimeFragment : Fragment() {
                 }
             }
         }
-
+   
 
 
 
@@ -64,6 +66,7 @@ class AnimeFragment : Fragment() {
 
         companion object{
             const val animeKey ="ANIME_KEY"
+            const val animeVideoKey ="ANIME_VIDEO_KEY"
         }
 
 }

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         binding.toolbar.isVisible = !isLandscape
         binding.toolbar.isVisible =
-            !isLandscape && navController.currentDestination?.id != R.id.navigation_release_date
+            !isLandscape && navController.currentDestination?.id != R.id.navigation_player
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         //Visibility bottomNav or RailNav
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.navigation_anime_info -> {
+                R.id.navigation_anime_info,R.id.navigation_player -> {
                     bottomNavView.isVisible = false
                     RailNavView.isVisible = false
                 }
@@ -93,7 +93,6 @@ class MainActivity : AppCompatActivity() {
 
     //ToolBar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
        //TODO: надо доделать потом поиск и настройки
         menuInflater.inflate(R.menu.topbar_menu, menu)
         val search = menu!!.findItem(R.id.navigation_search)
