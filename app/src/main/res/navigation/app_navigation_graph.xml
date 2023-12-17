@@ -41,5 +41,14 @@
     <fragment
         android:id="@+id/navigation_anime_info"
         android:name="com.example.animewatcher.presentation.fragments.info.AnimeFragment"
-        android:label="AnimeFragment" />
+        android:label="AnimeFragment" >
+        <action
+            android:id="@+id/action_navigation_anime_info_to_navigation_player"
+            app:destination="@id/navigation_player" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_player"
+        android:name="com.example.animewatcher.presentation.fragments.player.AnimePlayerFragment"
+        android:label="fragment_anime_player"
+        tools:layout="@layout/fragment_anime_player" />
 </navigation>
