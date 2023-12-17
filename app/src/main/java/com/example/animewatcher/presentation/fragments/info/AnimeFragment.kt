@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
@@ -16,11 +17,6 @@ import com.bumptech.glide.Glide
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.FragmentAnimeBinding
 import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class AnimeFragment : Fragment() {
     private val binding :FragmentAnimeBinding by lazy {
@@ -36,6 +32,7 @@ class AnimeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val navController = findNavController(this)
 
         if(!hasInternetConnection(requireActivity())){
             binding.errorCard.visibility = View.VISIBLE
@@ -55,14 +52,24 @@ class AnimeFragment : Fragment() {
                     } else {  animeDetailsText.text = getString(R.string.description_error) }
                     binding.progressbarInPage.visibility = View.GONE
                 }
+                //перекидывание ссылки на сезон
+                val stringError = getString(R.string.not_in_player)
+                binding.playCard.setOnClickListener {
+                    val seasonNumber:String = animeItem!!.seasons.keys.firstOrNull().toString()
+                    if(animeItem!!.seasons[seasonNumber]!!.link != null){
+                    navController.navigate(
+                        R.id.action_navigation_anime_info_to_navigation_player,
+                       bundleOf(animeVideoKey to animeItem!!.seasons[seasonNumber]!!.link)
+                    )} else{
+                        Toast.makeText(requireActivity(),stringError,Toast.LENGTH_LONG)
+                    }
+                }
             }
         }
-   
-
-
 
         return binding.root
     }
+
 
         companion object{
             const val animeKey ="ANIME_KEY"
