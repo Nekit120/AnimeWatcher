@@ -23,6 +23,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.FragmentAnimeBinding
 import com.example.animewatcher.databinding.FragmentAnimePlayerBinding
+import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
+import com.example.animewatcher.presentation.fragments.info.AnimeFragment
 
 @Suppress("DEPRECATION")
 class AnimePlayerFragment : Fragment() {
@@ -59,8 +61,15 @@ class AnimePlayerFragment : Fragment() {
         webView.fitsSystemWindows = true
         webView.isVerticalScrollBarEnabled = false
         webView.isHorizontalScrollBarEnabled = false
-        val video ="<iframe src=\"https://kodik.info/season/94793/3750223aafd73b4602ae571ed483aecb/720p\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen allow=\"autoplay *; fullscreen *\"></iframe>"
-        webView.loadData(video,"text/html","utf-8")
+
+        //получение ссылки
+        arguments.let {
+            val animeURL: String? = arguments?.getString(AnimeFragment.animeVideoKey)
+            val fullURL = "https://" + animeURL
+            val video ="<iframe src=\"${fullURL}\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen allow=\"autoplay *; fullscreen *\"></iframe>"
+            webView.loadData(video,"text/html","utf-8")
+        }
+
 
 
         return binding.root

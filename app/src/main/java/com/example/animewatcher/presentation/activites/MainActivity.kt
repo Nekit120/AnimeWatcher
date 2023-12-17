@@ -48,11 +48,13 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.isVisible =
             !isLandscape && navController.currentDestination?.id != R.id.navigation_player
 
+        //определяет, какие фрагменты в приложении будут считаться вершиной иерархии навигации
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_favorite, R.id.navigation_watch, R.id.navigation_release_date
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         //Visibility bottomNav or RailNav

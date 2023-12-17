@@ -19,7 +19,7 @@ class AnimeItemWatchAdapter(private val context: Context,private val navControll
     class ItemHolder(view: View): RecyclerView.ViewHolder(view){
         private val binding = AnimeWatchItemBinding.bind(view)
         fun setData(animeItem: AnimeApiItemModel, context: Context,navController: NavController) = with(binding){
-             itemView.setOnClickListener {
+            itemView.setOnClickListener {
                  navController.navigate(
                      R.id.action_navigation_watch_to_animeFragment,
                      bundleOf(AnimeFragment.animeKey to animeItem)
