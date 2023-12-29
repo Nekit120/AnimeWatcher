@@ -10,18 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.animewatcher.R
 import com.example.animewatcher.databinding.FragmentWatchBinding
 import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
-import com.example.animewatcher.presentation.adapters.AnimeItemWatchAdapter
+import com.example.animewatcher.presentation.adapters.AnimeItemAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class WatchFragment : Fragment() {
-    lateinit var  animeWatchAdapter : AnimeItemWatchAdapter
+    lateinit var  animeWatchAdapter : AnimeItemAdapter
     private val binding: FragmentWatchBinding by lazy {
         FragmentWatchBinding.inflate(layoutInflater)
     }
@@ -41,14 +39,14 @@ class WatchFragment : Fragment() {
         }
 
         val navController = findNavController()
-        animeWatchAdapter = AnimeItemWatchAdapter(requireActivity(),navController)
+        animeWatchAdapter = AnimeItemAdapter(requireActivity(),navController)
         binding.recyclerView.adapter = animeWatchAdapter
 
 
         loadData()
 
 
-        viewModel.resultListMenuLive.observe(requireActivity(),{
+        viewModel.resultListAnimeLive.observe(requireActivity(),{
             val animeList = mutableListOf<AnimeApiItemModel>()
             for (animeItem in it){
                 if (animeItem.materialData!=null){

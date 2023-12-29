@@ -1,7 +1,11 @@
 package com.example.animewatcher.presentation.di
 
+import com.example.animewatcher.data.database.MainDatabase
+import com.example.animewatcher.data.repository.FavoriteRepositoryImpl
 import com.example.animewatcher.data.repository.WatchRepositoryImpl
+import com.example.animewatcher.domain.repository.FavoriteRepository
 import com.example.animewatcher.domain.repository.WatchRepository
+import com.example.animewatcher.presentation.App
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +32,17 @@ class DataModule {
         return WatchRepositoryImpl(retrofit)
     }
 
+    @Provides
+    @Singleton
+    fun provideFavoriteRepository(database: MainDatabase): FavoriteRepository {
+        return FavoriteRepositoryImpl(database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDatabase(): MainDatabase {
+        return App.database
+    }
 
     @Provides
     @Singleton

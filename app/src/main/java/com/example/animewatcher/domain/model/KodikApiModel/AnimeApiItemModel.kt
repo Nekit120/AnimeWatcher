@@ -1,6 +1,7 @@
 package com.example.animewatcher.domain.model.KodikApiModel
 
 import android.os.Parcelable
+import com.example.animewatcher.data.database.AnimeItemModelDTO
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -25,5 +26,8 @@ data class AnimeApiItemModel(
     val screenshots: List<String>
 
 ): Parcelable{
-
+    constructor(item: AnimeItemModelDTO): this(
+        item.id,item.type,item.link,item.title,item.titleOrig,item.year, item.lastSeason,
+        item.lastEpisode,item.episodesCount,item.seasons,item.materialData,item.screenshots
+    )
 }
