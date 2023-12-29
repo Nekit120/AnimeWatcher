@@ -1,7 +1,6 @@
 package com.example.animewatcher.presentation.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +13,26 @@ import com.example.animewatcher.databinding.AnimeWatchItemBinding
 import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
 import com.example.animewatcher.presentation.fragments.info.AnimeFragment
 
-class AnimeItemWatchAdapter(private val context: Context,private val navController: NavController,private var animeItemList: List<AnimeApiItemModel> = emptyList()): RecyclerView.Adapter<AnimeItemWatchAdapter.ItemHolder>() {
+class AnimeItemAdapter(private val context: Context, private val navController: NavController, private var animeItemList: List<AnimeApiItemModel> = emptyList()): RecyclerView.Adapter<AnimeItemAdapter.ItemHolder>() {
 
     class ItemHolder(view: View): RecyclerView.ViewHolder(view){
         private val binding = AnimeWatchItemBinding.bind(view)
         fun setData(animeItem: AnimeApiItemModel, context: Context,navController: NavController) = with(binding){
             itemView.setOnClickListener {
-                 navController.navigate(
-                     R.id.action_navigation_watch_to_animeFragment,
-                     bundleOf(AnimeFragment.animeKey to animeItem)
-                 )
+                when (navController.currentDestination?.id) {
+                    R.id.navigation_watch -> {
+                        navController.navigate(
+                            R.id.action_navigation_watch_to_animeFragment,
+                            bundleOf(AnimeFragment.animeKey to animeItem)
+                        )
+                    }
+                    R.id.navigation_favorite -> {
+                        navController.navigate(
+                            R.id.action_navigation_favorite_to_animeFragment,
+                            bundleOf(AnimeFragment.animeKey to animeItem)
+                        )
+                    }
+                }
              }
             if (animeItem.materialData!=null){
                 Glide.with(context).load(animeItem.materialData!!.posterUrl).into(animePosterImageView)
