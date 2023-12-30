@@ -1,8 +1,10 @@
 package com.example.animewatcher.presentation.di
 
 import com.example.animewatcher.data.database.MainDatabase
+import com.example.animewatcher.data.repository.AnimeInfoRepositoryImpl
 import com.example.animewatcher.data.repository.FavoriteRepositoryImpl
 import com.example.animewatcher.data.repository.WatchRepositoryImpl
+import com.example.animewatcher.domain.repository.AnimeInfoRepository
 import com.example.animewatcher.domain.repository.FavoriteRepository
 import com.example.animewatcher.domain.repository.WatchRepository
 import com.example.animewatcher.presentation.App
@@ -14,6 +16,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 import javax.inject.Singleton
 
 
@@ -30,6 +33,11 @@ class DataModule {
     @Singleton
     fun provideWatchRepository(retrofit: Retrofit): WatchRepository {
         return WatchRepositoryImpl(retrofit)
+    }
+    @Provides
+    @Singleton
+    fun provideAnimeInfoRepository (database: MainDatabase) : AnimeInfoRepository {
+        return AnimeInfoRepositoryImpl(database)
     }
 
     @Provides

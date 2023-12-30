@@ -13,6 +13,7 @@
     <string name="select_episode">Select episode</string>
     <string name="play_text">Play</string>
     <string name="description_error">Unfortunately, the description has not been added yet, but you can always contact us and let us know about it!</string>
-    <string name="not_in_player">Perhaps this anime is not in our player!</string>
+    <string name="not_in_player">" Perhaps this anime is not in our player!"</string>
+    <string name="internet_error">" You do not have an Internet connection!"</string>
 
 </resources>
