@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.AnimeWatchItemBinding
 import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
-import com.example.animewatcher.presentation.fragments.info.AnimeFragment
+import com.example.animewatcher.presentation.fragments.info.AnimeInfoFragment
 
 class AnimeItemAdapter(private val context: Context, private val navController: NavController, private var animeItemList: List<AnimeApiItemModel> = emptyList()): RecyclerView.Adapter<AnimeItemAdapter.ItemHolder>() {
 
@@ -23,13 +23,13 @@ class AnimeItemAdapter(private val context: Context, private val navController: 
                     R.id.navigation_watch -> {
                         navController.navigate(
                             R.id.action_navigation_watch_to_animeFragment,
-                            bundleOf(AnimeFragment.animeKey to animeItem)
+                            bundleOf(AnimeInfoFragment.animeKey to animeItem)
                         )
                     }
                     R.id.navigation_favorite -> {
                         navController.navigate(
                             R.id.action_navigation_favorite_to_animeFragment,
-                            bundleOf(AnimeFragment.animeKey to animeItem)
+                            bundleOf(AnimeInfoFragment.animeKey to animeItem)
                         )
                     }
                 }

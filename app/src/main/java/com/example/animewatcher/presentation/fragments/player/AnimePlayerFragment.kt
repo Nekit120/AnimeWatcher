@@ -5,26 +5,18 @@ import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
-import androidx.activity.OnBackPressedCallback
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.navigation.fragment.findNavController
-import com.example.animewatcher.R
-import com.example.animewatcher.databinding.FragmentAnimeBinding
 import com.example.animewatcher.databinding.FragmentAnimePlayerBinding
-import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
-import com.example.animewatcher.presentation.fragments.info.AnimeFragment
+import com.example.animewatcher.presentation.fragments.info.AnimeInfoFragment
 
 @Suppress("DEPRECATION")
 class AnimePlayerFragment : Fragment() {
@@ -64,7 +56,7 @@ class AnimePlayerFragment : Fragment() {
 
         //получение ссылки
         arguments.let {
-            val animeURL: String? = arguments?.getString(AnimeFragment.animeVideoKey)
+            val animeURL: String? = arguments?.getString(AnimeInfoFragment.animeVideoKey)
             val fullURL = "https://" + animeURL
             val video ="<iframe src=\"${fullURL}\" width=\"100%\" height=\"100%\" frameborder=\"0\" allowfullscreen allow=\"autoplay *; fullscreen *\"></iframe>"
             webView.loadData(video,"text/html","utf-8")

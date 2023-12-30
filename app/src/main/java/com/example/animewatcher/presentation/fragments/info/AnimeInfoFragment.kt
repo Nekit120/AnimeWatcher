@@ -4,24 +4,27 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import com.bumptech.glide.Glide
 import com.example.animewatcher.R
 import com.example.animewatcher.databinding.FragmentAnimeBinding
 import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
+import com.example.animewatcher.presentation.fragments.favorite.FavoriteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class AnimeFragment : Fragment() {
+@AndroidEntryPoint
+class AnimeInfoFragment : Fragment() {
     private val binding :FragmentAnimeBinding by lazy {
         FragmentAnimeBinding.inflate(layoutInflater)
     }
+    private val viewModel: AnimeInfoViewModel by viewModels ()
     //Проверка на подключение к интернету
     fun hasInternetConnection(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -34,15 +37,13 @@ class AnimeFragment : Fragment() {
     ): View? {
         val navController = findNavController(this)
 
-        if(!hasInternetConnection(requireActivity())){
-            binding.errorCard.visibility = View.VISIBLE
-            binding.playCard.visibility = View.GONE
-            binding.favoriteCard.visibility = View.GONE
-            binding.episodeCard.visibility = View.GONE
-        }else{
+
             arguments.let {
                 val animeItem :AnimeApiItemModel? = arguments?.getParcelable(animeKey)
                 with(binding){
+                    favoriteCard.setOnClickListener {
+                        viewModel.addAnimeItemInDb(animeItem!!)
+                    }
                     animeNameText.text = animeItem!!.materialData!!.title
                     Glide.with(requireActivity()).load(animeItem.materialData!!.posterUrl).into(backgroundImage)
                     Glide.with(requireActivity()).load(animeItem.materialData.posterUrl).into(posterAnime)
@@ -52,19 +53,25 @@ class AnimeFragment : Fragment() {
                     } else {  animeDetailsText.text = getString(R.string.description_error) }
                     binding.progressbarInPage.visibility = View.GONE
                 }
-                //перекидывание ссылки на сезон
-                val stringError = getString(R.string.not_in_player)
+                //перекидывание ссылки на сезон и проверка на подключение к интернету
+                val stringNotPlayerError = getString(R.string.not_in_player)
+                val stringInternetError = getString(R.string.internet_error)
                 binding.playCard.setOnClickListener {
                     val seasonNumber:String = animeItem!!.seasons.keys.firstOrNull().toString()
-                    if(animeItem!!.seasons[seasonNumber]!!.link != null){
-                    navController.navigate(
-                        R.id.action_navigation_anime_info_to_navigation_player,
-                       bundleOf(animeVideoKey to animeItem!!.seasons[seasonNumber]!!.link)
-                    )} else{
-                        Toast.makeText(requireActivity(),stringError,Toast.LENGTH_LONG)
+                    if (hasInternetConnection(requireActivity())) {
+                        if (animeItem!!.seasons[seasonNumber]!!.link != null) {
+                            navController.navigate(
+                                R.id.action_navigation_anime_info_to_navigation_player,
+                                bundleOf(animeVideoKey to animeItem!!.seasons[seasonNumber]!!.link)
+                            )
+                        } else {
+                            Toast.makeText(requireActivity(), stringNotPlayerError, Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        Toast.makeText(requireActivity(), stringInternetError, Toast.LENGTH_LONG).show()
                     }
+
                 }
-            }
         }
 
         return binding.root

@@ -22,10 +22,7 @@
             android:textAlignment="center" />
     </com.google.android.material.card.MaterialCardView>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFavorite"
@@ -35,5 +32,4 @@
             android:clipToPadding="false"
             android:paddingBottom="28dp" />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>

@@ -14,6 +14,7 @@
     <string name="select_episode">Выберите эпизод</string>
     <string name="play_text">Воспроизвести</string>
     <string name="description_error">К сожалению описание ещё не добавленно, но Вы всегда можете связаться с нами и сообщить об этом!</string>
-    <string name="not_in_player">Возможно аниме этого нет в нашем плеере!</string>
+    <string name="not_in_player">Возможно это аниме нет в нашем плеере!</string>
+    <string name="internet_error">У вас отсутствует подключение к интернету!</string>
 
 </resources>
