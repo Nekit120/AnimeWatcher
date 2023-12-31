@@ -42,8 +42,18 @@ class AnimeInfoFragment : Fragment() {
                 val animeItem :AnimeApiItemModel? = arguments?.getParcelable(animeKey)
                 with(binding){
                     favoriteCard.setOnClickListener {
-                        viewModel.addAnimeItemInDb(animeItem!!)
+                        viewModel.addOrDeleteAnimeItemInDb(animeItem!!)
                     }
+                        viewModel.getFirstResultAnimeItemChecking(animeId = animeItem!!.id)
+                    viewModel.resultCheckingAnimeItemInFavoriteLive.observe(requireActivity(),{
+                        if(it){
+                            buttonFavorite.setImageResource(R.drawable.ic_heart_plus)
+                        }
+                        else {
+                            buttonFavorite.setImageResource(R.drawable.ic_heart_minus)
+                        }
+                    })
+
                     animeNameText.text = animeItem!!.materialData!!.title
                     Glide.with(requireActivity()).load(animeItem.materialData!!.posterUrl).into(backgroundImage)
                     Glide.with(requireActivity()).load(animeItem.materialData.posterUrl).into(posterAnime)
