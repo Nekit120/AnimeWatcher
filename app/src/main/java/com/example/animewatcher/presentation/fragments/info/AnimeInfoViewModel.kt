@@ -1,5 +1,7 @@
 package com.example.animewatcher.presentation.fragments.info
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
@@ -11,9 +13,27 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AnimeInfoViewModel @Inject constructor(val animeInfoUseCase: AnimeInfoUseCase):ViewModel() {
-    fun addAnimeItemInDb(animeItem:AnimeApiItemModel){
+
+    private val resultCheckingAnimeItemInFavorite = MutableLiveData<Boolean>()
+    val resultCheckingAnimeItemInFavoriteLive: LiveData<Boolean> = resultCheckingAnimeItemInFavorite
+
+
+    fun getFirstResultAnimeItemChecking(animeId:String) {
         viewModelScope.launch(Dispatchers.IO) {
-            animeInfoUseCase.addAnimeItemInDb(animeItem)
+            resultCheckingAnimeItemInFavorite.postValue(!animeInfoUseCase.matchСheckingAnimeItem(animeId))
+        }
+    }
+    fun addOrDeleteAnimeItemInDb(animeItem:AnimeApiItemModel){
+        viewModelScope.launch(Dispatchers.IO) {
+            val resultChecking = animeInfoUseCase.matchСheckingAnimeItem(animeItem.id)
+            if (resultChecking){
+                animeInfoUseCase.deleteAnimeItemFromDb(animeItem)
+                resultCheckingAnimeItemInFavorite.postValue(true)
+            }
+            else {
+                animeInfoUseCase.addAnimeItemInDb(animeItem)
+                resultCheckingAnimeItemInFavorite.postValue(false)
+            }
         }
     }
 }

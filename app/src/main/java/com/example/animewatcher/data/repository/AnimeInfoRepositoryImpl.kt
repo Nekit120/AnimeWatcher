@@ -13,4 +13,21 @@ class AnimeInfoRepositoryImpl @Inject constructor(val database: MainDatabase) : 
         val animeDao = database.getCodeDao()
         animeDao.insertAnimeItem(AnimeItemModelDTO(animeItem))
     }
+
+    override suspend fun deleteAnimeItemFromDb(animeItem: AnimeApiItemModel) {
+        val animeDao = database.getCodeDao()
+        animeDao.deleteAnimeItem(AnimeItemModelDTO(animeItem))
+    }
+
+    override suspend fun matchСheckingAnimeItem(id: String): Boolean {
+        val animeDao = database.getCodeDao()
+        val animeList = animeDao.getAnimeList()
+        var resultChecking = false
+        for( animeItem in animeList){
+            if (animeItem.id == id) {
+                resultChecking = true
+            }
+        }
+     return resultChecking
+    }
 }
