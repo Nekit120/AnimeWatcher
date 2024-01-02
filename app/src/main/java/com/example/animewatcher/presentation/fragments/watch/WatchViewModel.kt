@@ -20,7 +20,6 @@ class WatchViewModel @Inject constructor(val watchUseCase: WatchUseCase) :ViewMo
     fun getLastUpdatesAnimeList() {
         viewModelScope.launch(Dispatchers.IO) {
             resultListAnime.postValue(watchUseCase.getLastUpdatesAnimeList())
-
         }
     }
     fun resetToZeroAnimeList() {

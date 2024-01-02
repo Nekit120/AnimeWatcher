@@ -8,7 +8,7 @@ import com.example.animewatcher.domain.repository.AnimeInfoRepository
 import com.example.animewatcher.domain.repository.FavoriteRepository
 import javax.inject.Inject
 
-class AnimeInfoRepositoryImpl @Inject constructor(val database: MainDatabase) : AnimeInfoRepository {
+class AnimeInfoRepositoryImpl (val database: MainDatabase) : AnimeInfoRepository {
     override suspend fun addAnimeItemInDb(animeItem: AnimeApiItemModel) {
         val animeDao = database.getCodeDao()
         animeDao.insertAnimeItem(AnimeItemModelDTO(animeItem))

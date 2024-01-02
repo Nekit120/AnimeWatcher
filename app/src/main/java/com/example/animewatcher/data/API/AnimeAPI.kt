@@ -14,4 +14,16 @@ interface AnimeAPI {
         @Query("with_material_data") withMaterialData: Boolean = true,
         @Query("limit") limit:Int = 20
     ) : AnimeApiList
+
+    @GET("search")
+    suspend fun getSearchAnime(
+        @Query("token") token: String = BuildConfig.API_KEY,
+        @Query("types") types:String = "anime-serial,anime",
+        @Query("with_episodes") withEpisodes: Boolean = true,
+        @Query("with_material_data") withMaterialData: Boolean = true,
+        @Query("limit") limit:Int = 30,
+        @Query("title") title:String
+
+    ) : AnimeApiList
+
 }

@@ -6,7 +6,7 @@ import com.example.animewatcher.domain.model.KodikApiModel.AnimeApiItemModel
 import com.example.animewatcher.domain.repository.FavoriteRepository
 import javax.inject.Inject
 
-class FavoriteRepositoryImpl @Inject constructor(val database: MainDatabase) : FavoriteRepository {
+class FavoriteRepositoryImpl (val database: MainDatabase) : FavoriteRepository {
     override suspend fun getAllAnimeFromDb(): List<AnimeApiItemModel> {
         val allAnimeFromDb = database.getCodeDao().getAnimeList()
         val animeList: MutableList<AnimeApiItemModel> = mutableListOf()
