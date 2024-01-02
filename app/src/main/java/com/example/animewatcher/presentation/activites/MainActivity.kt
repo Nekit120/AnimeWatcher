@@ -97,9 +97,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
        //TODO: надо доделать потом поиск и настройки
         menuInflater.inflate(R.menu.topbar_menu, menu)
-        val search = menu!!.findItem(R.id.navigation_search)
-        val settings = menu!!.findItem(R.id.navigation_settings)
         val navController = findNavController(R.id.nav_host_fragment_main_activity)
+        val search = menu!!.findItem(R.id.navigation_search)
+        search.setOnMenuItemClickListener {
+            navController.navigate(R.id.navigation_search)
+            return@setOnMenuItemClickListener true
+        }
+        val settings = menu!!.findItem(R.id.navigation_settings)
+        settings.setOnMenuItemClickListener {
+            navController.navigate(R.id.navigation_settings)
+            return@setOnMenuItemClickListener true
+        }
         return super.onCreateOptionsMenu(menu)
     }
 }

@@ -3,9 +3,11 @@ package com.example.animewatcher.presentation.di
 import com.example.animewatcher.data.database.MainDatabase
 import com.example.animewatcher.data.repository.AnimeInfoRepositoryImpl
 import com.example.animewatcher.data.repository.FavoriteRepositoryImpl
+import com.example.animewatcher.data.repository.SearchRepositoryImpl
 import com.example.animewatcher.data.repository.WatchRepositoryImpl
 import com.example.animewatcher.domain.repository.AnimeInfoRepository
 import com.example.animewatcher.domain.repository.FavoriteRepository
+import com.example.animewatcher.domain.repository.SearchRepository
 import com.example.animewatcher.domain.repository.WatchRepository
 import com.example.animewatcher.presentation.App
 import dagger.Module
@@ -38,6 +40,11 @@ class DataModule {
     @Singleton
     fun provideAnimeInfoRepository (database: MainDatabase) : AnimeInfoRepository {
         return AnimeInfoRepositoryImpl(database)
+    }
+    @Provides
+    @Singleton
+    fun provideSearchRepository (retrofit: Retrofit) : SearchRepository{
+        return SearchRepositoryImpl(retrofit)
     }
 
     @Provides

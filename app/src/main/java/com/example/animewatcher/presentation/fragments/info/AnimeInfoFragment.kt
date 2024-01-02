@@ -37,7 +37,6 @@ class AnimeInfoFragment : Fragment() {
     ): View? {
         val navController = findNavController(this)
 
-
             arguments.let {
                 val animeItem :AnimeApiItemModel? = arguments?.getParcelable(animeKey)
                 with(binding){

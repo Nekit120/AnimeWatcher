@@ -35,9 +35,9 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.animewatcher.presentation.fragments.SerchFragment"
+        android:name="com.example.animewatcher.presentation.fragments.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_serch" />
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/navigation_anime_info"
         android:name="com.example.animewatcher.presentation.fragments.info.AnimeInfoFragment"
