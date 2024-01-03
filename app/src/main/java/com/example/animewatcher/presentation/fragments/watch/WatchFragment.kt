@@ -47,13 +47,7 @@ class WatchFragment : Fragment() {
 
 
         viewModel.resultListAnimeLive.observe(requireActivity(),{
-            val animeList = mutableListOf<AnimeApiItemModel>()
-            for (animeItem in it){
-                if (animeItem.materialData!=null){
-                    animeList.add(animeItem)
-                }
-            }
-            animeWatchAdapter.setData(animeList)
+            animeWatchAdapter.setData(it)
             binding.swipeContainer.isRefreshing = false
             if(hasInternetConnection(requireActivity())){
                 binding.progressBarInAnimeWatch.visibility = View.GONE }

@@ -41,7 +41,12 @@ class FavoriteFragment : Fragment() {
 
         viewModel.getAllListAnimeFromDB()
         viewModel.resultListAnimeLive.observe(requireActivity(),{
-            animeFavoriteAdapter.setData(it)
+            if(it.isNullOrEmpty()){
+                binding.emptyCard.visibility = View.VISIBLE
+            }else{
+                animeFavoriteAdapter.setData(it)
+                binding.emptyCard.visibility = View.GONE
+            }
         })
         return binding.root
     }

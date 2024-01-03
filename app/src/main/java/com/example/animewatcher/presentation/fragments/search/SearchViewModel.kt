@@ -19,7 +19,13 @@ class SearchViewModel @Inject constructor(val searchUseCase: SearchUseCase): Vie
 
     fun getSearchAnimeList(animeTitleName:String) {
         viewModelScope.launch(Dispatchers.IO){
-            resultSearchAnimeItem.postValue(searchUseCase.getSearchAnime(animeTitleName))
+            val animeList = mutableListOf<AnimeApiItemModel>()
+            for (animeItem in searchUseCase.getSearchAnime(animeTitleName)){
+                if (animeItem.materialData!=null){
+                    animeList.add(animeItem)
+                }
+            }
+            resultSearchAnimeItem.postValue(animeList)
         }
     }
 

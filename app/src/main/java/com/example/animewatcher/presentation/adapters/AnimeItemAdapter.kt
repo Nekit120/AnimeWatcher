@@ -26,6 +26,12 @@ class AnimeItemAdapter(private val context: Context, private val navController: 
                             bundleOf(AnimeInfoFragment.animeKey to animeItem)
                         )
                     }
+                    R.id.navigation_search -> {
+                        navController.navigate(
+                            R.id.action_navigation_search_to_navigation_anime_info,
+                            bundleOf(AnimeInfoFragment.animeKey to animeItem)
+                        )
+                    }
                     R.id.navigation_favorite -> {
                         navController.navigate(
                             R.id.action_navigation_favorite_to_animeFragment,

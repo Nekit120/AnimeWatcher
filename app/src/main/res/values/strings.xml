@@ -15,5 +15,6 @@
     <string name="description_error">Unfortunately, the description has not been added yet, but you can always contact us and let us know about it!</string>
     <string name="not_in_player">" Perhaps this anime is not in our player!"</string>
     <string name="internet_error">" You do not have an Internet connection!"</string>
+    <string name="empty_bd">You don\'t have any favorite anime yet, but you can add them!</string>
 
 </resources>
