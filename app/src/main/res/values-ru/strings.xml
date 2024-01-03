@@ -16,5 +16,6 @@
     <string name="description_error">К сожалению описание ещё не добавленно, но Вы всегда можете связаться с нами и сообщить об этом!</string>
     <string name="not_in_player">Возможно это аниме нет в нашем плеере!</string>
     <string name="internet_error">У вас отсутствует подключение к интернету!</string>
+    <string name="empty_bd">Пока что у вас нет любимых аниме, но вы можете их добавить!</string>
 
 </resources>

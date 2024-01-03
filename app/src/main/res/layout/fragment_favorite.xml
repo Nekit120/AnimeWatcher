@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/errorCard"
+        android:id="@+id/emptyCard"
         style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@string/anime_error_request"
+            android:text="@string/empty_bd"
             android:textAlignment="center" />
     </com.google.android.material.card.MaterialCardView>
 

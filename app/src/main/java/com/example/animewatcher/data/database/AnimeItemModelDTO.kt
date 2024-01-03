@@ -21,14 +21,8 @@ data class AnimeItemModelDTO(
     val titleOrig: String,
     @ColumnInfo("year")
     val year: Int,
-    @ColumnInfo("lastSeason")
-    val lastSeason: Int,
-    @ColumnInfo("lastEpisode")
-    val lastEpisode: Int,
-    @ColumnInfo("episodesCount")
-    val episodesCount: Int,
     @ColumnInfo("seasons")
-    val seasons:  Map<String, Season>,
+    val seasons:  Map<String, Season>?,
     @ColumnInfo("materialData")
     val materialData: MaterialData?,
     @ColumnInfo("screenshots")
@@ -36,7 +30,7 @@ data class AnimeItemModelDTO(
 
 ) {
     constructor(item: AnimeApiItemModel): this(
-        item.id,item.type,item.link,item.title,item.titleOrig,item.year, item.lastSeason,
-        item.lastEpisode,item.episodesCount,item.seasons,item.materialData,item.screenshots
+        item.id,item.type,item.link,item.title,item.titleOrig,item.year,
+        item.seasons,item.materialData,item.screenshots
     )
 }

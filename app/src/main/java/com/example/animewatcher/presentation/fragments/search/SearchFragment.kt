@@ -35,6 +35,7 @@ class SearchFragment : Fragment() {
 
         binding.searchAnimeItem.addTextChangedListener{
             binding.progressbarInSearch.visibility = View.VISIBLE
+            animeSearchAdapter.setData(emptyList())
             // Удаляем предыдущую задачу, чтобы избежать лишних вызовов
             if(handler != null){
                 handler.removeCallbacksAndMessages(null)}
@@ -42,7 +43,7 @@ class SearchFragment : Fragment() {
             // Запускаем задачу через 1 секунду
             handler.postDelayed({
                 val searchAnimeNameText = it.toString()
-                if (searchAnimeNameText.length >= 3) {
+                if (searchAnimeNameText.length >= 2) {
                     viewModel.getSearchAnimeList(searchAnimeNameText)
                 }
             }, 1000)
@@ -58,12 +59,6 @@ class SearchFragment : Fragment() {
         binding.recyclerView.adapter = animeSearchAdapter
 
         viewModel.resultSearchAnimeItemLive.observe(requireActivity(),{
-            val animeList = mutableListOf<AnimeApiItemModel>()
-            for (animeItem in it){
-                if (animeItem.materialData!=null){
-                    animeList.add(animeItem)
-                }
-            }
             binding.progressbarInSearch.visibility = View.GONE
                     animeSearchAdapter.setData(it)
                 })

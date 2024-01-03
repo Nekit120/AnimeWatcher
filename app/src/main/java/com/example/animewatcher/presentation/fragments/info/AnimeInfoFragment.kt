@@ -66,16 +66,10 @@ class AnimeInfoFragment : Fragment() {
                 val stringNotPlayerError = getString(R.string.not_in_player)
                 val stringInternetError = getString(R.string.internet_error)
                 binding.playCard.setOnClickListener {
-                    val seasonNumber:String = animeItem!!.seasons.keys.firstOrNull().toString()
                     if (hasInternetConnection(requireActivity())) {
-                        if (animeItem!!.seasons[seasonNumber]!!.link != null) {
                             navController.navigate(
                                 R.id.action_navigation_anime_info_to_navigation_player,
-                                bundleOf(animeVideoKey to animeItem!!.seasons[seasonNumber]!!.link)
-                            )
-                        } else {
-                            Toast.makeText(requireActivity(), stringNotPlayerError, Toast.LENGTH_LONG).show()
-                        }
+                                bundleOf(animeVideoKey to animeItem!!.link))
                     } else {
                         Toast.makeText(requireActivity(), stringInternetError, Toast.LENGTH_LONG).show()
                     }
