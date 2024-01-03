@@ -17,5 +17,6 @@
     <string name="not_in_player">Возможно это аниме нет в нашем плеере!</string>
     <string name="internet_error">У вас отсутствует подключение к интернету!</string>
     <string name="empty_bd">Пока что у вас нет любимых аниме, но вы можете их добавить!</string>
+    <string name="empty_answer_after_search">По вашему запросу ничего не найдено!</string>
 
 </resources>
