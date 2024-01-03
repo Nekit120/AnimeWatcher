@@ -21,6 +21,7 @@ interface AnimeAPI {
         @Query("types") types:String = "anime-serial,anime",
         @Query("with_episodes") withEpisodes: Boolean = true,
         @Query("with_material_data") withMaterialData: Boolean = true,
+        @Query("translation_type") translationType: String = "subtitles",
         @Query("limit") limit:Int = 30,
         @Query("title") title:String
 

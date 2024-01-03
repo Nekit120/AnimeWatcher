@@ -2,6 +2,8 @@ package com.example.animewatcher.presentation.fragments.search
 
 import android.content.Context
 import android.content.res.Configuration
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -22,6 +24,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
+    //Проверка на подключение к интернету
+    fun hasInternetConnection(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        return  capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+    }
 
     lateinit var  animeSearchAdapter : AnimeItemAdapter
     private val binding : FragmentSearchBinding by lazy {
@@ -34,6 +42,7 @@ class SearchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding.searchAnimeItem.addTextChangedListener{
+            binding.emptyCard.visibility = View.GONE
             binding.progressbarInSearch.visibility = View.VISIBLE
             animeSearchAdapter.setData(emptyList())
             // Удаляем предыдущую задачу, чтобы избежать лишних вызовов
@@ -44,7 +53,9 @@ class SearchFragment : Fragment() {
             handler.postDelayed({
                 val searchAnimeNameText = it.toString()
                 if (searchAnimeNameText.length >= 2) {
-                    viewModel.getSearchAnimeList(searchAnimeNameText)
+                    if (hasInternetConnection(requireActivity())){
+                        viewModel.getSearchAnimeList(searchAnimeNameText)
+                    }
                 }
             }, 1000)
         }
@@ -60,7 +71,12 @@ class SearchFragment : Fragment() {
 
         viewModel.resultSearchAnimeItemLive.observe(requireActivity(),{
             binding.progressbarInSearch.visibility = View.GONE
-                    animeSearchAdapter.setData(it)
+            if (it.isNullOrEmpty()){
+                binding.emptyCard.visibility = View.VISIBLE
+            }else{
+                binding.emptyCard.visibility = View.GONE
+                animeSearchAdapter.setData(it)
+            }
                 })
 
         return binding.root
