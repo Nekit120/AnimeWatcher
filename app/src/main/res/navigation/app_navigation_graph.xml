@@ -27,7 +27,7 @@
         android:id="@+id/navigation_release_date"
         android:name="com.example.animewatcher.presentation.fragments.ReleaseDateFragment"
         android:label="@string/title_release_date"
-        tools:layout="@layout/fragment_release_date" />
+        tools:layout="@layout/fragment_auth" />
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.animewatcher.presentation.fragments.SettingsFragment"

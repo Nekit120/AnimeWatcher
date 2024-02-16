@@ -17,5 +17,9 @@
     <string name="internet_error">" You do not have an Internet connection!"</string>
     <string name="empty_bd">You don\'t have any favorite anime yet, but you can add them!</string>
     <string name="empty_answer_after_search">Nothing was found for your request!</string>
+    <string name="registration">" Don't have an account yet? Register."</string>
+    <string name="password">Password</string>
+    <string name="email">E-mail</string>
+    <string name="log_in_account">Log in</string>
 
 </resources>

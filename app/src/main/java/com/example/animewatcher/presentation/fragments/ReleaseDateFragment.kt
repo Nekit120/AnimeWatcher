@@ -25,7 +25,7 @@ class ReleaseDateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_release_date, container, false)
+        return inflater.inflate(R.layout.fragment_auth, container, false)
     }
 
 

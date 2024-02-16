@@ -18,5 +18,9 @@
     <string name="internet_error">У вас отсутствует подключение к интернету!</string>
     <string name="empty_bd">Пока что у вас нет любимых аниме, но вы можете их добавить!</string>
     <string name="empty_answer_after_search">По вашему запросу ничего не найдено!</string>
+    <string name="registration">У вас ещё нет аккаунта? Зарегистрируйтесь.</string>
+    <string name="password">Пароль</string>
+    <string name="email">E-mail</string>
+    <string name="log_in_account">Войти</string>
 
 </resources>
